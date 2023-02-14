@@ -1,0 +1,78 @@
+@import url("https://use.typekit.net/gth6tnj.css");
+@import url("https://use.typekit.net/gth6tnj.css");
+:root {
+  --coul_principale_pale: #ececec;
+  --coul_principale_moyen: #222;
+  --coul_principale_fonce: #111;
+  --coul_sec_pale: #a79378;
+  --coul_sec_fonce: #665945;
+}
+
+body {
+  background-color: var(--coul_principale_moyen);
+  color: var(--coul_principale_pale);
+  font-family: raleway, sans-serif;
+  font-size: 14px;
+  margin: 0;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: cheap-pine-sans, sans-serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 3rem;
+  color: var(--coul_sec_pale);
+}
+
+h2 {
+  color: var(--coul_sec_pale);
+  margin: 30px 0;
+  font-size: 2rem;
+}
+
+h3 {
+  margin-top: 40px;
+  font-size: 1.5rem;
+}
+
+p {
+  line-height: 1.3rem;
+}
+
+.container {
+  max-width: 80%;
+  margin: auto;
+}
+
+.erreur {
+  color: red;
+}
+
+.succes {
+  color: greenyellow;
+}
+
+input.btn {
+  cursor: pointer;
+}
+
+.bouton-plein {
+  padding: 10px 30px;
+  background-color: var(--coul_sec_pale);
+  color: var(--coul_principale_pale);
+  border-radius: 7px;
+  text-decoration: none;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.bouton-plein:hover {
+  background-color: var(--coul_sec_fonce);
+}/*# sourceMappingURL=style.css.map */

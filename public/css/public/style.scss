@@ -1,0 +1,699 @@
+//
+// Feuille de style de la portion publique du site Web
+
+// Importation de la feuille de style des variables, styles géréraux, etc.
+@import url("../parts/general/style.css");
+
+// Bouton de style bg vide
+.bouton-vide {
+    padding: 10px 30px;
+    background-color: rgba(17, 17, 17, 0.4);
+    border: solid var(--coul_principale_pale) 1px;
+    border-radius: 7px;
+    color: var(--coul_principale_pale);
+    text-decoration: none;
+
+    &:hover {
+        background-color: var(--coul_principale_pale);
+        color: var(--coul_principale_fonce);
+    }
+}
+
+// Texte en background (image) - gros
+img.texte_bg_gros {
+    position: absolute;
+    opacity: 0.05;
+    pointer-events: none;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow: auto;
+    width: 100vw;
+
+    // Responsive - déplacer vers le haut
+    @media only screen and (max-width: 992px) {
+        top: 30%;
+    }
+
+    // Responsive - faire disparaitre
+    @media only screen and (max-width: 600px) {
+        display: none;
+    }
+}
+
+// Texte en background - moyen
+span.texte_bg_moyen {
+    position: absolute;
+    opacity: 0.05;
+    font-size: 10rem;
+    margin-left: -40px;
+    margin-top: -100px;
+    pointer-events: none;
+    font-family: cheap-pine-sans, sans-serif;
+    color: var(--coul_sec_pale);
+    overflow: auto;
+
+    // Responsive - faire disparaitre
+    @media only screen and (max-width: 600px) {
+        display: none;
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------- Navigation
+header {
+    background-color: var(--coul_principale_fonce);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+
+    // Si un utilisateur est connecté - option de retour à l'admin + deconnexion
+    .utilisateur_connecte {
+        background-color: var(--coul_principale_moyen);
+
+        .section_admin {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h2 {
+                margin: 10px 0;
+            }
+        }
+
+        // Responsive - faire disparaitre
+        @media only screen and (max-width: 992px) {
+            display: none;
+        }
+    }
+
+    // Menu
+    nav {
+        padding: 10px 0;
+
+        // Logo - gauche
+        img.logo {
+            position: fixed;
+            width: 250px;
+            transition: transform .2s;
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            // Resposive- réduire
+            @media only screen and (max-width: 992px) {
+                width: 175px;
+            }
+        }
+
+        // Liens du menu - droite
+        ul {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            // Responsive - ul - emplacement des liens pour le menu burger
+            @media only screen and (max-width: 992px) {
+                display: none;
+                flex-direction: column;
+                margin-top: 80px;
+                gap: 20px;
+                padding: 0;
+            }
+
+            // Liens
+            li {
+                text-decoration: none;
+                list-style-type: none;
+                margin-left: 40px;
+
+                // Responsive - li - pour menu burger
+                @media only screen and (max-width: 992px) {
+                    margin-left: 0;
+                }
+
+                a {
+                    text-decoration: none;
+                    color: var(--coul_principale_pale);
+
+                    &:hover {
+                        color: var(--coul_sec_pale);
+                    }
+                }
+
+            }
+
+            // Liens des réseaux sociaux
+            div.reseaux {
+                display: flex;
+
+                li {
+                    margin-left: 15px;
+
+                    &:first-child {
+                        margin-left: 40px;
+
+                        // Responsive - ajustement de la marge de gauche
+                        @media only screen and (max-width: 992px) {
+                            margin-left: 0;
+                        }
+                    }
+                }
+
+                div {
+                    width: 16px;
+                    height: 16px;
+                }
+
+                // Images des liens de réseaux sociaux & hover
+                .twitter {
+                    background-image: url("../../img/twitter.png");
+                    background-size: contain;
+
+                    &:hover {
+                        background-image: url("../../img/hover/twitter-hover.png");
+                    }
+                }
+
+                .facebook {
+                    background-image: url("../../img/facebook.png");
+                    background-size: contain;
+
+                    &:hover {
+                        background-image: url("../../img/hover/facebook-hover.png");
+                    }
+                }
+
+                .instagram {
+                    background-image: url("../../img/instagram.png");
+                    background-size: contain;
+
+                    &:hover {
+                        background-image: url("../../img/hover/instagram-hover.png");
+                    }
+                }
+            }
+
+        }
+
+        // Faire apparaitre le menu lors du clique sur l'icone burger avec l'ajout de la classe 'actif' par JS
+        ul.actif {
+            display: flex;
+        }
+
+        // Style du menu burger pour mobile 
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            width: 25px;
+            margin: 10px 0 10px auto;
+
+            .barre {
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                transition: all 0.3s ease-in-out;
+                background-color: var(--coul_principale_pale);
+                display: flex;
+                justify-content: flex-end;
+            }
+        }
+
+        // Responsive - apparition du menu burger + animation de transformation de l'icone burger en X
+        @media only screen and (max-width: 992px) {
+            .hamburger {
+                display: block;
+            }
+
+            .hamburger.actif .barre:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.actif .barre:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.actif .barre:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------- ACCUEIL
+// Entête de la page d'accueil
+#entete {
+    background-image: url("../../img/steak-entete.jpg");
+    padding: 200px 0 20px 0;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+
+    // Titre
+    h1.titre-accueil {
+        font-size: 4rem;
+        color: var(--coul_principale_pale);
+        padding: 0 10px;
+
+        // Responsive - réduire le titre
+        @media only screen and (max-width: 600px) {
+            font-size: 3rem;
+        }
+    }
+
+    // Flèche menant à la section témoignages
+    a.fleche {
+        bottom: 0;
+        display: flex;
+        justify-content: center;
+        margin-top: 150px;
+
+        div.fleche_bas {
+            height: 32px;
+            width: 32px;
+            background-image: url("../../img/arrow.png");
+            background-size: contain;
+
+            &:hover {
+                background-image: url("../../img/hover/arrow-hover.png");
+            }
+        }
+    }
+}
+
+// Section témoignages de la page d'accueil
+#temoignages {
+    text-align: center;
+    padding: 75px 0 90px 0;
+    position: relative;
+    overflow: hidden;
+
+    h2 {
+        margin-bottom: 50px;
+    }
+
+    // Conteneur
+    .temoignages {
+        display: flex;
+        justify-content: space-around;
+
+        // Style d'un témoignage
+        .temoignage {
+            padding: 0 40px;
+            max-width: 20%;
+
+            .etoile {
+                font-size: 22px;
+            }
+
+            // Responsive - réduire l'espacement
+            @media only screen and (max-width: 1200px) {
+                padding: 0 20px;
+                max-width: 30%;
+            }
+
+            // Responsive - afficher seulement 2 témoignages
+            @media only screen and (max-width: 992px) {
+                display: none;
+
+                &:nth-child(-n+2) {
+                    display: block;
+                    max-width: 45%;
+                }
+            }
+
+            // Responsive - afficher seulement 1 témoignage
+            @media only screen and (max-width: 600px) {
+                &:nth-child(-n+2) {
+                    display: none;
+                }
+
+                &:first-child {
+                    display: block;
+                    max-width: 80%;
+                }
+            }
+        }
+    }
+}
+
+// Section blocs/images de la page d'accueil
+#images {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--coul_principale_fonce);
+
+    // Images
+    img {
+        width: 50%;
+        height: 400px;
+        object-fit: cover;
+
+        // Responsive - faire disparaitre les images
+        @media only screen and (max-width: 768px) {
+            display: none;
+        }
+    }
+
+    // Boites de texte
+    div.texte {
+        width: 50%;
+        height: 400px;
+        box-sizing: border-box;
+        padding: 10px 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+
+        // Responsive - ajuste la boite de texte
+        @media only screen and (max-width: 768px) {
+            width: 100%;
+            height: auto;
+            padding: 40px 75px;
+        }
+
+        // Contenus de la boite de texte
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        a.voir_plus {
+            display: flex;
+            color: var(--coul_principale_pale);
+            text-decoration: none;
+
+            div.fleche {
+                background-image: url("../../img/right-arrow.png");
+                height: 16px;
+                width: 16px;
+                margin-top: 15px;
+                margin-left: 7px;
+                transition: margin-left 0.3s;
+            }
+
+            &:hover {
+                color: var(--coul_sec_pale);
+
+                div.fleche {
+                    background-image: url("../../img/hover/right-arrow-hover.png");
+                    margin-left: 12px;
+                }
+            }
+        }
+    }
+
+    // Séparation seulement en mode 768px et moins
+    hr {
+        display: none;
+
+        @media only screen and (max-width: 768px) {
+            display: block;
+            width: 70%;
+            border: 1px solid var(--coul_principale_pale);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------- Layout de la page MENU et À PROPOS
+// Section de gauche
+img.section_gauche {
+    height: 100vh;
+    width: 40%;
+    object-fit: cover;
+    position: fixed;
+    z-index: -1;
+    left: 0;
+    margin-top: -100px;
+
+    // Responsive - faire disparaitre l'image
+    @media only screen and (max-width: 1200px) {
+        width: 0;
+        display: none;
+    }
+}
+
+// Section de droite - texte
+div.section_droite {
+    margin: 150px 0 70px 0;
+    margin-left: calc(40% + 100px);
+    max-width: 55%;
+
+    // Resposive - ajuster la disposition du texte (100%)
+    @media only screen and (max-width: 1200px) {
+        margin-left: 0;
+        max-width: 100%;
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------- Page MENU
+#menu {
+    .section_menu {
+
+        // Titre des catégories
+        h2.categorie_repas {
+            margin-top: 50px;
+        }
+
+        div.section_droite {
+
+            // Section d'un repas
+            .repas {
+                border-left: solid var(--coul_principale_pale) 2px;
+                padding: 15px 25px;
+                margin-bottom: 25px;
+
+                h3.titre_repas {
+                    margin: 0px;
+                }
+
+                span.prix {
+                    color: var(--coul_sec_pale);
+                    padding: 10px 0;
+                }
+
+                p.description {
+                    margin: 0;
+                    padding-top: 5px;
+                }
+
+                // Hover sur la section d'un repas
+                &:hover {
+                    background-color: rgba(17, 17, 17, 0.5);
+                    cursor: pointer;
+                }
+            }
+
+            // Ajout d'un bg lors du clique sur un repas (ajout de la classe 'selectionnee' par JS)
+            .selectionnee {
+                background-color: rgba(17, 17, 17, 0.5);
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------- Page À PROPOS
+#a-propos {
+
+    // Ajustement de l'image
+    div.section_apropos {
+        img {
+            position: absolute;
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------- Page NOUS JOINDRE
+#nous_joindre {
+    margin: 150px 0 0 0;
+
+    // Conteneur
+    .info_contact {
+        display: flex;
+        flex-wrap: wrap;
+
+        // Responsive - inverser l'ordre de la carte et du texte
+        @media only screen and (max-width: 768px) {
+            flex-direction: column-reverse;
+        }
+
+        // Carte
+        .map {
+            margin: 0 0 70px 0;
+            width: 50%;
+            height: 450px;
+
+            // Responsive - réduire la taille de la carte
+            @media only screen and (max-width: 768px) {
+                width: 100%;
+                height: 300px;
+            }
+        }
+
+        // Bloc de texte
+        .information {
+            margin-left: 100px;
+
+            // Responsive - Ajuster la disposition du texte
+            @media only screen and (max-width: 768px) {
+                margin-left: 0;
+                margin-bottom: 75px;
+                text-align: center;
+                width: 100%;
+            }
+
+            h1 {
+                margin-top: 0;
+            }
+
+            h3 {
+                margin-bottom: 10px;
+            }
+
+            p {
+                margin: 0px;
+            }
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------- FOOTER
+// Section infolettre
+footer {
+    z-index: 200;
+
+    // Section infolettre
+    #infolettre {
+        text-align: center;
+        padding: 75px;
+        background-color: var(--coul_principale_fonce);
+
+        h2 {
+            margin-bottom: 5px;
+            margin-top: 0px;
+        }
+
+        p {
+            margin-top: 0px;
+        }
+
+        // Formulaire infolettre
+        form {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            input {
+                margin-top: 10px;
+                width: 300px;
+                padding: 10px;
+                border: none;
+                border-radius: 7px;
+                font-family: raleway, sans-serif;
+                background-color: var(--coul_principale_pale);
+                box-sizing: border-box;
+
+                // Responsive - ajuster (réduire) la largeur des input en mode 600px et moins
+                @media only screen and (max-width: 600px) {
+                    width: 250px;
+                }
+
+                &:focus {
+                    outline: none;
+                    background-color: white;
+                }
+            }
+
+            // Bouton "M'abonner"
+            input.btn {
+                width: 100px;
+                background-color: var(--coul_sec_pale);
+                color: var(--coul_principale_pale);
+
+                &:hover {
+                    background-color: var(--coul_sec_fonce);
+                }
+            }
+        }
+    }
+
+    // Infos de bas de page
+    #bas_de_page {
+        padding: 40px 0;
+        background-color: var(--coul_principale_moyen);
+
+        // Conteneur des informations
+        .informations {
+            display: flex;
+            align-items: flex-end;
+
+            // Responsive - ajustement de la disposition des éléments
+            @media only screen and (max-width: 1200px) {
+                display: block;
+                text-align: center;
+            }
+
+            // Logo
+            a {
+                img {
+                    width: 140px;
+                    transition: transform .2s;
+
+                    &:hover {
+                        transform: scale(1.1);
+                    }
+                }
+            }
+
+            // Conteneurs texte
+            div.adresse,
+            div.heures_ouverture {
+
+                // Responsive - disposition des textes
+                @media only screen and (max-width: 1200px) {
+                    margin: 20px 0;
+                }
+
+                p {
+                    margin: 0 0 0 100px;
+
+                    // Responsive - enlever les marges
+                    @media only screen and (max-width: 1200px) {
+                        margin: 0;
+                    }
+                }
+            }
+
+            // Copyright
+            p.copyright {
+                flex-grow: 4;
+                text-align: right;
+                margin-bottom: 0;
+
+                // Responsive - centrer le copyright avec les autres informations
+                @media only screen and (max-width: 1200px) {
+                    display: block;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+// Background du footer sur l'accueil seulement (couleurs inversées)
+#accueil {
+    footer {
+
+        #infolettre {
+            background-color: var(--coul_principale_moyen);
+        }
+
+        #bas_de_page {
+            background-color: var(--coul_principale_fonce);
+        }
+    }
+}
