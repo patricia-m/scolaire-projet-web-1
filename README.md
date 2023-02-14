@@ -10,4 +10,6 @@ Ce projet avait pour objectif de concevoir et mettre en ligne un site web comple
 
 **Je suis très fière de mes formulaires permettant d'ajouter ou de modifier une catégorie. J'ai réussi à intégrer une fonctionnalité qui donne au client fictif un contrôle complet sur l'affichage de l'ordre des catégories.**
 
+Pour consulter la partie front-end du projet : https://1139073.cpsw-fcsei.com/projetweb1/
+
 
